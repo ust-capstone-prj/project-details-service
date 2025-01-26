@@ -22,13 +22,13 @@ public class ProjectDetails {
     @Column(name = "project_id")  
     private Long projectId;
 
-    @Column(name = "project_type_category_variation_id")  
-    private Long projectTypeCategoryVariationId;
-
     @Column(name = "sqft_area")  
     private Double sqftArea;
 
-    @Column(name = "contractor_id")  
+    @Column(name = "project_variation_id")  
+    private Long projectTypeCategoryVariationId;
+
+    @Column(name = "contractor_id", nullable=true)  
     private Long contractorId;
 
     @Column(name = "user_id")  
