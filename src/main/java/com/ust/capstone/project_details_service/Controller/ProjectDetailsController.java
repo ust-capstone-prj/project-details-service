@@ -56,4 +56,11 @@ public class ProjectDetailsController {
         boolean isDeleted = projectDetailsService.deleteProjectDetails(id);
         return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ProjectDetails>> getProjectDetailsByUserId(@PathVariable Long userId) {
+        List<ProjectDetails> projectDetails = projectDetailsService.getProjectDetailsByUserId(userId);
+        return projectDetails.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(projectDetails);
+    }
+
 }

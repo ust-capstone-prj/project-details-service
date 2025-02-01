@@ -51,4 +51,9 @@ public class ProjectDetailsService {
         project.setApproved(true);
         return projectDetailsRepository.save(project);
     }
+
+    public List<ProjectDetails> getProjectDetailsByUserId(Long userId) {
+        return projectDetailsRepository.findByUserId(userId);
+    }
+
 }
