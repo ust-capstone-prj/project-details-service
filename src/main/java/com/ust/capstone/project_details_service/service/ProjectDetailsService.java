@@ -45,4 +45,10 @@ public class ProjectDetailsService {
         }
         return false;
     }
+
+    public ProjectDetails setApproval(Long id) {
+        ProjectDetails project = projectDetailsRepository.findById(id).orElse(null);
+        project.setApproved(true);
+        return projectDetailsRepository.save(project);
+    }
 }

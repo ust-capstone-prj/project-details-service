@@ -14,24 +14,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "project_details")  
+@Table(name = "project_details")
 public class ProjectDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Column(name = "project_id")  
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "project_id")
     private Long projectId;
 
-    @Column(name = "sqft_area")  
+    @Column(name = "sqft_area")
     private Double sqftArea;
 
-    @Column(name = "project_variation_id")  
+    @Column(name = "project_variation_id")
     private Long projectTypeCategoryVariationId;
 
-    @Column(name = "contractor_id", nullable=true)  
+    @Column(name = "contractor_id", nullable = true)
     private Long contractorId;
 
-    @Column(name = "user_id")  
+    @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "is_approved")
+    private boolean isApproved;
 }

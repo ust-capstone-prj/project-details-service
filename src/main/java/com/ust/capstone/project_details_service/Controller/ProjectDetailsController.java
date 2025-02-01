@@ -39,9 +39,16 @@ public class ProjectDetailsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProjectDetails> updateProjectDetails(@PathVariable Long id, @RequestBody ProjectDetails projectDetails) {
+    public ResponseEntity<ProjectDetails> updateProjectDetails(@PathVariable Long id,
+            @RequestBody ProjectDetails projectDetails) {
         ProjectDetails updatedProjectDetails = projectDetailsService.updateProjectDetails(id, projectDetails);
-        return updatedProjectDetails != null ? ResponseEntity.ok(updatedProjectDetails) : ResponseEntity.notFound().build();
+        return updatedProjectDetails != null ? ResponseEntity.ok(updatedProjectDetails)
+                : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/approval/{id}")
+    public ResponseEntity<ProjectDetails> setProjectApproval(@PathVariable Long id) {
+        return new ResponseEntity<ProjectDetails>(projectDetailsService.setApproval(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
