@@ -36,4 +36,10 @@ public class ProjectDetails {
 
     @Column(name = "is_approved")
     private boolean isApproved;
+
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
 }

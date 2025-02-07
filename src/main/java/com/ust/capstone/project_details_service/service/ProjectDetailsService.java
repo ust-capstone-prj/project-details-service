@@ -56,4 +56,34 @@ public class ProjectDetailsService {
         return projectDetailsRepository.findByUserId(userId);
     }
 
+    public boolean softDeleteProjectDetails(Long id) {
+        Optional<ProjectDetails> projectDetails = projectDetailsRepository.findById(id);
+        if (projectDetails.isPresent()) {
+            ProjectDetails project = projectDetails.get();
+            project.setDeleted(true);
+            projectDetailsRepository.save(project);
+            return true;
+        }
+        return false;
+    }
+
+
+    public ProjectDetails updateProjectPartial(Long id, String phoneNumber, Double sqftArea) {
+        Optional<ProjectDetails> optionalProject = projectDetailsRepository.findById(id);
+        if (optionalProject.isPresent()) {
+            ProjectDetails project = optionalProject.get();
+            // if (phoneNumber != null) {
+                project.setPhoneNumber(phoneNumber);
+            // }
+            // if (sqftArea != null) {
+                project.setSqftArea(sqftArea);
+            // }
+            System.out.println(project);
+            return projectDetailsRepository.save(project);
+        }
+       
+        return null;
+    }
+    
+
 }
