@@ -67,23 +67,29 @@ public class ProjectDetailsService {
         return false;
     }
 
-
     public ProjectDetails updateProjectPartial(Long id, String phoneNumber, Double sqftArea) {
         Optional<ProjectDetails> optionalProject = projectDetailsRepository.findById(id);
         if (optionalProject.isPresent()) {
             ProjectDetails project = optionalProject.get();
             // if (phoneNumber != null) {
-                project.setPhoneNumber(phoneNumber);
+            project.setPhoneNumber(phoneNumber);
             // }
             // if (sqftArea != null) {
-                project.setSqftArea(sqftArea);
+            project.setSqftArea(sqftArea);
             // }
             System.out.println(project);
             return projectDetailsRepository.save(project);
         }
-       
+
         return null;
     }
-    
+
+    public long getProjectCountByApprovalStatus(boolean isApproved) {
+        if (isApproved) {
+            return projectDetailsRepository.countByIsApprovedTrue();
+        } else {
+            return projectDetailsRepository.countByIsApprovedFalse();
+        }
+    }
 
 }

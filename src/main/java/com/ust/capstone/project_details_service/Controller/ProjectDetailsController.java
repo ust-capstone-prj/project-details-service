@@ -62,21 +62,31 @@ public class ProjectDetailsController {
         List<ProjectDetails> projectDetails = projectDetailsService.getProjectDetailsByUserId(userId);
         return projectDetails.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(projectDetails);
     }
+
     @PutMapping("/soft-delete/{id}")
     public ResponseEntity<Void> softDeleteProjectDetails(@PathVariable Long id) {
         boolean isDeleted = projectDetailsService.softDeleteProjectDetails(id);
         return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 
+    // GET /api/projects/count?approved=true
+    @GetMapping("/count")
+    public ResponseEntity<Long> getProjectCountByApprovalStatus(@RequestParam boolean approved) {
+        long count = projectDetailsService.getProjectCountByApprovalStatus(approved);
+        return ResponseEntity.ok(count);
+    }
 
-//     @PutMapping("edit/{id}")
-// public ResponseEntity<ProjectDetails> updateProjectPartial(@PathVariable Long id,
-//                                                            @RequestParam(required = false) String phoneNumber,
-//                                                            @RequestParam(required = false) Double sqftArea) {
-//     ProjectDetails updatedProject = projectDetailsService.updateProjectPartial(id, phoneNumber, sqftArea);
+    // @PutMapping("edit/{id}")
+    // public ResponseEntity<ProjectDetails> updateProjectPartial(@PathVariable Long
+    // id,
+    // @RequestParam(required = false) String phoneNumber,
+    // @RequestParam(required = false) Double sqftArea) {
+    // ProjectDetails updatedProject =
+    // projectDetailsService.updateProjectPartial(id, phoneNumber, sqftArea);
 
-//     System.out.println(updatedProject);
-//     return updatedProject != null ? ResponseEntity.ok(updatedProject) : ResponseEntity.notFound().build();
-// }
+    // System.out.println(updatedProject);
+    // return updatedProject != null ? ResponseEntity.ok(updatedProject) :
+    // ResponseEntity.notFound().build();
+    // }
 
 }
